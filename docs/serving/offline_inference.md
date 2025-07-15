@@ -1,30 +1,30 @@
-# Offline Inference
+# Offline inference
 
-Offline inference is possible in your own code using vLLM's [`LLM`][vllm.LLM] class.
+You can perform *offline inference* in your own code using the [`LLM`][vllm.LLM] class in vLLM.
 
 For example, the following code downloads the [`facebook/opt-125m`](https://huggingface.co/facebook/opt-125m) model from HuggingFace
-and runs it in vLLM using the default configuration.
+and runs the model in vLLM using the default configuration:
 
 ```python
-from vllm import LLM
+    from vllm import LLM
 
-# Initialize the vLLM engine.
-llm = LLM(model="facebook/opt-125m")
+    # Initialize the vLLM engine.
+    llm = LLM(model="facebook/opt-125m")
 ```
 
 After initializing the `LLM` instance, use the available APIs to perform model inference.
 The available APIs depend on the model type:
 
-- [Generative models](../models/generative_models.md) output logprobs which are sampled from to obtain the final output text.
+- [Generative models](../models/generative_models.md) output logprobs, and vLLM samples them to obtain the final output text.
 - [Pooling models](../models/pooling_models.md) output their hidden states directly.
 
-!!! info
-    [API Reference][offline-inference-api]
+!!! note
+    For more information about offline inference, see the [Offline inference API reference][offline-inference-api].
 
 ## Ray Data LLM API
 
-Ray Data LLM is an alternative offline inference API that uses vLLM as the underlying engine.
-This API adds several batteries-included capabilities that simplify large-scale, GPU-efficient inference:
+*Ray Data LLM* is an alternative offline inference API that uses vLLM as the underlying engine.
+This API adds several built-in capabilities that simplify large-scale, GPU-efficient inference:
 
 - Streaming execution processes datasets that exceed aggregate cluster memory.
 - Automatic sharding, load balancing, and autoscaling distribute work across a Ray cluster with built-in fault tolerance.
